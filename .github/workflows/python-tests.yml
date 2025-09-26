@@ -1,0 +1,31 @@
+name: Testes Python
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clonar repositório
+      uses: actions/checkout@v3
+
+    - name: Instalar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Instalar dependências
+      run: |
+        pip install -r requirements.txt
+        pip install coverage
+
+    - name: Rodar testes com cobertura
+      run: |
+        coverage run -m unittest discover -s tests
+        coverage report
+
