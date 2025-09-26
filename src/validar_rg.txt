@@ -1,0 +1,4 @@
+def validar_rg(rg):
+    rg = ''.join(filter(str.isdigit, rg))
+    return len(rg) == 9 and rg != rg[0] * 9
+
